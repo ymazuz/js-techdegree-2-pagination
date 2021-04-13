@@ -16,7 +16,9 @@ const itemsPerPage = 9; // global constant should be accessible in all my functi
 // use this function to create an element with a class and text content in one line
 function createElement(tagName, className ='', textContent = '') {
 	const element = document.createElement(tagName);
-	element.className = className;
+	if (className) { 
+		element.className = className;
+	}
 	element.textContent = textContent;
 	
 	return element;
