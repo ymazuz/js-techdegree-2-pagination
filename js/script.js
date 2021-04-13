@@ -17,7 +17,65 @@ For assistance:
 Create the `showPage` function
 This function will create and insert/append the elements needed to display a "page" of nine students
 */
-
+function showPage(list, page) {
+  const itemsPerPage = 9; // maybe we'll want to make this dynamic some other time
+  const startIndex = (page * itemsPerPage) - itemsPerPage;
+  const endIndex = page * itemsPerPage;
+  
+  const studentList = document.querySelector('ul.student-list');
+  studentList.innerHTML = '';
+  
+  // build tag quickly: may want to move this function to global scope later!
+  function createElement(tagName, className, textContent = '') {
+    const element = document.createElement(tagName);
+    element.className = className;
+    element.textContent = textContent;
+    
+    return element;
+  }
+  
+  function createListItem(student) {
+    // create the outer li
+    const li = createElement('li', 'student-item cf')
+    
+    //create the first <div> for student details
+    const studentDiv = createElement('div', 'student-details');
+    
+    // create inner elements of the student-details <div>
+    const avatar = createElement('img', 'avatar');
+    avatar.src = student.picture.thumbnail; 
+    const nameH3 = createElement('h3', '', `${student.name.first} ${student.name.last}`);
+    const emailSpan = createElement('span', 'email', student.email);
+    
+    // stick the inner elements into the first <div>
+    studentDiv.appendChild(avatar);
+    studentDiv.appendChild(nameH3);
+    studentDiv.appendChild(emailSpan);
+    
+    // create second <div>
+    const joinedDiv = document.createElement('div', 'joined-details');
+    
+    // create the <span> inside it
+    const dateSpan = createElement('span', 'date', `Joined ${student.registered.date}`);
+    
+    // put the <span> in the <div>
+    joinedDiv.appendChild(dateSpan);
+    
+    // append the <div>s to the <li>
+    li.appendChild(studentDiv);
+    li.appendChild(joinedDiv);
+    
+    return li;
+  }
+  
+  for (let i = 0; i < list.length; i++ ) {
+    if ( i >= startIndex && i < endIndex ) {
+      
+      // create the <li> and append it to the list all in one go
+      studentList.appendChild(createListItem(list[i]));
+    }
+  }
+}
 
 
 /*
@@ -28,3 +86,4 @@ This function will create and insert/append the elements needed for the paginati
 
 
 // Call functions
+showPage(data, 1);
