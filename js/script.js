@@ -86,13 +86,16 @@ function addPagination(list) {
 	const linkList = document.querySelector('ul.link-list');
 	linkList.innerHTML = '';
 	
-	  for (let i = 1; i <= numPages; i++ ) {
-	    const li = document.createElement('li');
-	    const button = document.createElement('button');
-	    button.textContent = i;
-	    li.appendChild(button);
-	    linkList.appendChild(li);
-	  }
+  for (let i = 1; i <= numPages; i++ ) {
+    const li = document.createElement('li');
+    const button = document.createElement('button');
+    button.textContent = i;
+    li.appendChild(button);
+    linkList.appendChild(li);
+  }
+  
+  const activeButton = document.querySelector('ul.link-list li button'); //first button in an li in the correct list
+  activeButton.className = 'active';
 }
 
 
