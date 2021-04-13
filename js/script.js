@@ -104,9 +104,11 @@ function addPagination(list) {
         pageButton.className = ''; // remove active class from everyone
       }
       
-      const buttonNum = parseInt(event.target.textContent); // use the textContent to determine button #
-      pageButtons[buttonNum - 1].className = 'active'; // collections are zero-indexed, so subtract 1
+      const selectedPage = parseInt(event.target.textContent); // use the textContent to determine button #
+      pageButtons[selectedPage - 1].className = 'active'; // collections are zero-indexed, so subtract 1
       
+      // call our showPage function on the newly selected page!
+      showPage(data, selectedPage); // can use either variable, data or list, here. They point to the same object in memory, I think?
     }
   });
 }
