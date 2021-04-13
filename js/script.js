@@ -94,12 +94,19 @@ function addPagination(list) {
     linkList.appendChild(li);
   }
   
-  const activeButton = document.querySelector('ul.link-list li button'); //first button in an li in the correct list
-  activeButton.className = 'active';
+  // get a collection of all pagination <button> elements
+  const pageButtons = document.querySelectorAll('ul.link-list li button'); 
+  pageButtons[0].className = 'active'; // add the "active" class to the first one
   
-  linkList.addEventListener('click', (event) => {
-    if (event.target.tagName === 'BUTTON') {
-      console.log(`You clicked button ${event.target.textContent}!`)
+  linkList.addEventListener('click', (event) => { // one handler will listen for clicks anywhere in the list
+    if (event.target.tagName === 'BUTTON') { // only do anything if the click target was a <button>
+      for (pageButton of pageButtons) {
+        pageButton.className = ''; // remove active class from everyone
+      }
+      
+      const buttonNum = parseInt(event.target.textContent); // use the textContent to determine button #
+      pageButtons[buttonNum - 1].className = 'active'; // collections are zero-indexed, so subtract 1
+      
     }
   });
 }
