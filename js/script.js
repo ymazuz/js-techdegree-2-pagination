@@ -69,7 +69,6 @@ function showPage(list, page) {
   
   for (let i = 0; i < list.length; i++ ) {
     if ( i >= startIndex && i < endIndex ) {
-      
       // create the <li> and append it to the list all in one go
       studentList.appendChild(createListItem(list[i]));
     }
@@ -87,6 +86,13 @@ function addPagination(list) {
 	const linkList = document.querySelector('ul.link-list');
 	linkList.innerHTML = '';
 	
+	  for (let i = 1; i <= numPages; i++ ) {
+	    const li = document.createElement('li');
+	    const button = document.createElement('button');
+	    button.textContent = i;
+	    li.appendChild(button);
+	    linkList.appendChild(li);
+	  }
 }
 
 
