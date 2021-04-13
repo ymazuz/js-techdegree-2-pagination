@@ -114,7 +114,36 @@ function addPagination(list) {
   });
 }
 
+function addSearchBar() {
+  // create the DOM elements
+  const searchBar = createElement('label', 'student-search'); // create outer <label>
+  searchBar.htmlFor = 'search';
+  
+  const span = createElement('span', '', 'Search by name'); // create inner <span>  
+  
+  const input = createElement('input'); // create actual form field
+  input.id = 'search';
+  input.placeholder = 'Search by name...';
+  
+  const submit = createElement('button'); // create submit button
+  submit.type = 'button';
+  
+  const searchIcon = createElement('img'); // create the icon <img> element
+  searchIcon.src = 'img/icn-search.svg';
+  searchIcon.alt = 'Search icon';
+  
+  submit.appendChild(searchIcon); // put the icon onto the button
+  
+  // put the other elements inside the <label> in order
+  searchBar.appendChild(span);
+  searchBar.appendChild(input);
+  searchBar.appendChild(submit);
+  
+  const header = document.querySelector('div.page header.header'); // select the header we're appending the form to
+  header.appendChild(searchBar);
+}
 
 // Call functions
 showPage(data, 1);
 addPagination(data);
+addSearchBar();
