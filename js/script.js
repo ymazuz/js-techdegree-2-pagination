@@ -13,6 +13,15 @@ For assistance:
 
 const itemsPerPage = 9; // global constant should be accessible in all my functions
 
+// use this function to create an element with a class and text content in one line
+function createElement(tagName, className ='', textContent = '') {
+	const element = document.createElement(tagName);
+	element.className = className;
+	element.textContent = textContent;
+	
+	return element;
+}
+
 /*
 Create the `showPage` function
 This function will create and insert/append the elements needed to display a "page" of nine students
@@ -23,16 +32,7 @@ function showPage(list, page) {
   
   const studentList = document.querySelector('ul.student-list');
   studentList.innerHTML = '';
-  
-  // build tag quickly: may want to move this function to global scope later!
-  function createElement(tagName, className, textContent = '') {
-    const element = document.createElement(tagName);
-    element.className = className;
-    element.textContent = textContent;
     
-    return element;
-  }
-  
   function createListItem(student) {
     // create the outer li
     const li = createElement('li', 'student-item cf')
@@ -87,9 +87,8 @@ function addPagination(list) {
 	linkList.innerHTML = '';
 	
   for (let i = 1; i <= numPages; i++ ) {
-    const li = document.createElement('li');
-    const button = document.createElement('button');
-    button.textContent = i;
+    const li = createElement('li');
+    const button = createElement('button', '', i);
     li.appendChild(button);
     linkList.appendChild(li);
   }
