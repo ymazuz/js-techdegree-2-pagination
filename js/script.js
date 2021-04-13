@@ -96,6 +96,12 @@ function addPagination(list) {
   
   const activeButton = document.querySelector('ul.link-list li button'); //first button in an li in the correct list
   activeButton.className = 'active';
+  
+  linkList.addEventListener('click', (event) => {
+    if (event.target.tagName === 'BUTTON') {
+      console.log(`You clicked button ${event.target.textContent}!`)
+    }
+  });
 }
 
 
