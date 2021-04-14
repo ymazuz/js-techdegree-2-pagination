@@ -84,10 +84,10 @@ This function will create and insert/append the elements needed for the paginati
 */
 function addPagination(list) {
   // initialization: figure out number of pages, clear the <ul>
-	const numPages = Math.ceil(list.length / itemsPerPage); 
-	const linkList = document.querySelector('ul.link-list');
-	linkList.innerHTML = '';
-	
+  const numPages = Math.ceil(list.length / itemsPerPage);
+  const linkList = document.querySelector('ul.link-list');
+  linkList.innerHTML = '';
+  
   for (let i = 1; i <= numPages; i++ ) {
     const li = createElement('li');
     const button = createElement('button', '', i);
