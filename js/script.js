@@ -141,6 +141,34 @@ function addSearchBar() {
   
   const header = document.querySelector('div.page header.header'); // select the header we're appending the form to
   header.appendChild(searchBar);
+  
+  // searchNames: takes search input and the original data, makes a new list of matches, then calls showPage() and addPagination()
+  function searchNames(searchInput, studentList) {
+    const searchFor = searchInput.toLowerCase();
+    let matches = [];
+    
+    for (let i = 0; i < studentList.length; i++) {
+      name = `${studentList[i].name.first} ${studentList[i].name.last}`.toLowerCase();
+      if (name.includes(searchFor)) {
+        matches.push(studentList[i]);
+      }
+    }
+    
+    showPage(matches, 1);
+    addPagination(matches);
+  
+  }
+  
+  // add Event Listeners for keyup and submit
+  input.addEventListener('keyup', () => {
+  	searchNames(input.value, data);
+  });
+  
+  submit.addEventListener('click', (event) => {
+    event.preventDefault();
+    searchNames(input.value, data);
+  });
+  
 }
 
 // Call functions
