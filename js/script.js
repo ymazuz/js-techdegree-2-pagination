@@ -88,6 +88,11 @@ function addPagination(list) {
   const linkList = document.querySelector('ul.link-list');
   linkList.innerHTML = '';
   
+  // okay you actually don't need page buttons if there's one page!
+  if (numPages <= 1) {
+    return;
+  }
+  
   for (let i = 1; i <= numPages; i++ ) {
     const li = createElement('li');
     const button = createElement('button', '', i);
@@ -96,7 +101,10 @@ function addPagination(list) {
   }
   
   // get a collection of all pagination <button> elements
-  const pageButtons = document.querySelectorAll('ul.link-list li button'); 
+  const pageButtons = document.querySelectorAll('ul.link-list li button');
+  
+  // we're only here if there are at least 2 pages worth of results
+  // so the pageButtons array will have at least 2 elements and indexing will work!
   pageButtons[0].className = 'active'; // add the "active" class to the first one
   
   linkList.addEventListener('click', (event) => { // one handler will listen for clicks anywhere in the list
