@@ -71,8 +71,7 @@ function showPage(list, page) {
   
   for (let i = 0; i < list.length; i++ ) {
     if ( i >= startIndex && i < endIndex ) {
-      // create the <li> and append it to the list all in one go
-      studentList.appendChild(createListItem(list[i]));
+      studentList.appendChild(createListItem(list[i])); // create the <li> and append it to the list all in one go
     }
   }
 }
