@@ -29,11 +29,18 @@ Create the `showPage` function
 This function will create and insert/append the elements needed to display a "page" of nine students
 */
 function showPage(list, page) {
+  const studentList = document.querySelector('ul.student-list');
+  studentList.innerHTML = '';
+  
+  if (!list.length) { // gonna just show "no results" msg and skip the <li> elements if the array is empty
+    const message = createElement('span', 'no-results', 'No results found!');
+    studentList.appendChild(message);
+    return;
+  }
+  
   const startIndex = (page * itemsPerPage) - itemsPerPage;
   const endIndex = page * itemsPerPage;
   
-  const studentList = document.querySelector('ul.student-list');
-  studentList.innerHTML = '';
     
   function createListItem(student) {
     // create the outer li
