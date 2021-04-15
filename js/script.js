@@ -123,7 +123,7 @@ function addPagination(list) {
       pageButtons[selectedPage - 1].className = 'active'; // collections are zero-indexed, so subtract 1
       
       // call our showPage function on the newly selected page!
-      showPage(data, selectedPage); // can use either variable, data or list, here. They point to the same object in memory, I think?
+      showPage(list, selectedPage); // call showPage() with the same list variable passed in to addPagination()
     }
   });
 }
